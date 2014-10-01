@@ -67,6 +67,9 @@ namespace Lab3Barrasso
             // Check if right mouse buton was clicked
             if (e.Button == MouseButtons.Right)
             {
+                // Get coordinates of mouse click
+                Point clickPoint = new Point(e.X, e.Y);
+
                 // Loop through all the objects in allPoints
                 for (int i = 0; i < this.allPoints.Count; i++)
                 {
