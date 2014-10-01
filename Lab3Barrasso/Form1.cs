@@ -78,12 +78,13 @@ namespace Lab3Barrasso
 
                     // Check if mouse click occured in boundingbox of currentpoint
 
-                    // Check if point is black
+
+                    // Check if point is red
                     if (this.allPoints[i].isRed == true)
                         // Remove it
                         this.allPoints.RemoveAt(i);
                     else
-                        // Create new object
+                        // Create new object with same point and isRed set to true
                         this.allPoints[i] = new MarksClass(currentPoint, true);
                 }
 
