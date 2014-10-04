@@ -38,7 +38,7 @@ namespace Lab3Barrasso
                     // Create an black dot with coords and set height and width
                     g.FillEllipse(Brushes.Black, markObj.p.X - width / 2, markObj.p.Y - height / 2, width, height);
                                  
-                else
+                else if (markObj.isRed)
                 {
                     // Create an red dot with coords and set height and width
                     g.FillEllipse(Brushes.Red, markObj.p.X - width / 2, markObj.p.Y - height / 2, width, height);
@@ -67,25 +67,26 @@ namespace Lab3Barrasso
             // Check if right mouse buton was clicked
             if (e.Button == MouseButtons.Right)
             {
-                // Get coordinates of mouse click
-                Point clickPoint = new Point(e.X, e.Y);
-
                 // Loop through all the objects in allPoints
-                for (int i = 0; i < this.allPoints.Count; i++)
+                for (int i = this.allPoints.Count-1; i >= 0; i--)
                 {
+                    // Get coordinates of mouse click
+                    Point clickPoint = new Point(e.X, e.Y);
+
                     // Get current index's point
                     Point currentPoint = this.allPoints[i].p;
 
                     // Check if mouse click occured in boundingbox of currentpoint
-
-
-                    // Check if point is red
-                    if (this.allPoints[i].isRed == true)
-                        // Remove it
-                        this.allPoints.RemoveAt(i);
-                    else
-                        // Create new object with same point and isRed set to true
-                        this.allPoints[i] = new MarksClass(currentPoint, true);
+                    if ((clickPoint.X <= (currentPoint.X + 20)) && (clickPoint.X >= (currentPoint.X - 20)) && (clickPoint.Y <= (currentPoint.Y + 20)) && (clickPoint.Y >= (currentPoint.Y - 20)))
+                    {
+                        // Check if point is red
+                        if (this.allPoints[i].isRed == true)
+                            // Remove it
+                            this.allPoints.RemoveAt(i);
+                        else
+                            // On this object set isRed to true
+                            this.allPoints[i].isRed = true;
+                    }
                 }
 
                 // Invalidate
